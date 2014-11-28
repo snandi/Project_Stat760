@@ -1,0 +1,10 @@
+*~
+tmp
+backup_linux
+*.pdf
+.Rhistory
+*.Rdata
+*.txt
+*.csv
+.Rproj.user
+.Rproj.user/*
