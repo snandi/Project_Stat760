@@ -77,8 +77,9 @@
 %\setlength{\textheight}{10in}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{Sweave}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+\input{Update_2014-11-30_Data1-concordance}
 
 \bibliographystyle{plain}  %Choose a bibliograhpic style
 
@@ -105,78 +106,62 @@ The results of using the {\emph{clValid package}} in R, on {\bf{Data 1}} are:
 
 \noindent
 For {\emph{Gaussian Mixture Model clustering}}\\
-<<echo=FALSE>>=
-rm(list=ls(all.names=TRUE))
-rm(list=objects(all.names=TRUE))
-#dev.off()
-
-########################################################################
-## This script uses the clValid package to compare the clustering     ##
-## techniques
-########################################################################
-
-########################################################################
-## Run Header files                                                   ##
-########################################################################
-Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
-source(Filename.Header)
-
-RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
-RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
-source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
-
-########################################################################
-## Data 1                                                             ##
-########################################################################
-Filename.Data1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
-Data1 <- read.table(file=Filename.Data1, header=TRUE, sep='\t', quote="", 
-                    comment.char="",
-                    stringsAsFactors=F)
-Time1 <- Sys.time()
-#GMM1 <- Mclust(data = Data1[,-c(1:2)])
-#summary(GMM1)
-#Sys.time() - Time1
-Filename.GMM1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
-load(Filename.GMM1)
-#save(GMM1, file=Filename.GMM1)
-
-Modelname <- summary(GMM1)[['modelName']]
-NumClusters <- summary(GMM1)[['G']]
-GMM_Output <- paste(Modelname, '(', mclustModelNames(Modelname)[['type']], ')', 'model with', 
-                    NumClusters, 'components')  
-print('Mclust recommends:')
-print(GMM_Output)
-@ 
+\begin{Schunk}
+\begin{Soutput}
+[1] "Mclust recommends:"
+\end{Soutput}
+\begin{Soutput}
+[1] "VEV ( ellipsoidal, equal shape ) model with 5 components"
+\end{Soutput}
+\end{Schunk}
 \\
 \noindent
 For {\emph{Hierarchical clustering}}\\
 
-<<echo=FALSE, results=tex>>=
-Time1 <- Sys.time()
-Comparison1 <- clValid(obj=t(Data1[,-c(1:2)]), nClust=4:8, maxitems=30000,
-                       clMethods=c("hierarchical", "kmeans", "pam"),
-                       validation="internal")
-# summary(Comparison1)
-# Sys.time() - Time1
-Filename.Comp1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
-save(Comparison1, file=Filename.Comp1)
-
-Measures <- Comparison1@measures
-#str(Measures)
-#round(Measures[,,'hierarchical'], 4)
-xtable(round(Measures[,,'hierarchical'], 4), digits=4)
-@
-\\
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Mon Dec 01 00:44:48 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 17.1766 & 20.1056 & 20.3972 & 20.7639 & 23.6929 \\ 
+  Dunn & 0.5069 & 0.5322 & 0.5322 & 0.5322 & 0.5322 \\ 
+  Silhouette & 0.1619 & 0.1568 & 0.1454 & 0.1345 & 0.1063 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
 For {\emph{k-means clustering}}\\
-<<echo=FALSE, results=tex>>=
-xtable(round(Measures[,,'kmeans'], 4), digits=4)
-@
-\\
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Mon Dec 01 00:44:48 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 59.7694 & 57.8294 & 59.5972 & 63.6556 & 73.3353 \\ 
+  Dunn & 0.3709 & 0.3426 & 0.3426 & 0.3843 & 0.3843 \\ 
+  Silhouette & 0.0668 & 0.0852 & 0.0840 & 0.0867 & 0.0757 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
 For {\emph{PAM clustering}}\\
-<<echo=FALSE, results=tex>>=
-xtable(round(Measures[,,'pam'], 4), digits=4)
-@
-\\
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Mon Dec 01 00:44:48 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 65.3274 & 66.5143 & 82.4679 & 92.1758 & 92.5425 \\ 
+  Dunn & 0.3266 & 0.3266 & 0.3266 & 0.3322 & 0.3322 \\ 
+  Silhouette & 0.0608 & 0.0744 & 0.0560 & 0.0471 & 0.0454 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
 Final recommendations:
 \begin{table}[H]
 \centering

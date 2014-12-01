@@ -33,7 +33,7 @@ Sys.time() - Time1
 
 Modelname <- summary(GMM1)[['modelName']]
 NumClusters <- summary(GMM1)[['G']]
-GMM_Output <- paste('Mclust recommends', Modelname, '(', mclustModelNames('VVV')[['type']], ')', 'model with', 
+GMM_Output <- paste('Mclust recommends', Modelname, '(', mclustModelNames(Modelname)[['type']], ')', 'model with', 
                     NumClusters, 'components')  
 print(GMM_Output)
 
