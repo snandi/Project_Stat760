@@ -26,7 +26,7 @@ summary(GMM2)
 Sys.time() - Time1
 
 Time1 <- Sys.time()
-Comparison2 <- clValid(obj=t(Data2), nClust=4:10, maxitems=30000,
+Comparison2 <- clValid(obj=Data2, nClust=4:10, maxitems=30000,
                        clMethods=c("hierarchical", "kmeans", "pam"),
                        validation="internal")
 summary(Comparison2)

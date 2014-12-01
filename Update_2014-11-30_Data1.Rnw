@@ -153,7 +153,7 @@ For {\emph{Hierarchical clustering}}\\
 
 <<echo=FALSE, results=tex>>=
 Time1 <- Sys.time()
-Comparison1 <- clValid(obj=t(Data1[,-c(1:2)]), nClust=4:8, maxitems=30000,
+Comparison1 <- clValid(obj=Data1[,-c(1:2)], nClust=4:8, maxitems=30000,
                        clMethods=c("hierarchical", "kmeans", "pam"),
                        validation="internal")
 # summary(Comparison1)
@@ -184,9 +184,9 @@ Final recommendations:
 \hline
 & Score & Method & Clusters \\
 \hline
-Connectivity & 17.1766 & hierarchical & 4 \\
-Dunn & 0.5322 & hierarchical & 5 \\
-Silhouette & 0.1619 & hierarchical & 4 \\
+Connectivity & 26.7952 & hierarchical & 4 \\
+Dunn & 0.1257 & hierarchical & 5 \\
+Silhouette & 0.9295 & hierarchical & 4 \\
 \hline
 \end{tabular}
 \end{table}

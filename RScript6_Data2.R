@@ -41,7 +41,7 @@ print(GMM_Output)
 #save(GMM2, file=Filename.GMM2)
 
 Time1 <- Sys.time()
-Comparison2 <- clValid(obj=t(Data2[1:1000,]), nClust=4:10, maxitems=30000,
+Comparison2 <- clValid(obj=Data2, nClust=4:6, maxitems=30000,
                        clMethods=c("hierarchical", "kmeans", "pam"),
                        validation="internal")
 summary(Comparison2)
