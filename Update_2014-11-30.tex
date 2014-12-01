@@ -1,0 +1,183 @@
+%\documentclass[11pt]{extarticle} %extarticle for fontsizes other than 10, 11 And 12
+\documentclass[11p]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsxtra}
+\usepackage{bbold}
+%\usepackage{bigints}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+%\usepackage{fancyhdr}
+\usepackage{float}
+%\usepackage{fullpage} %% Dont use this for beamer presentations
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{lscape}
+%\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{xargs}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg, .jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sup}{\textsuperscript}
+\newcommand{\Exp}{\mathds{E}}
+\newcommand{\Prob}{\mathds{P}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\Ind}{\mathds{1}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\union}{\bigcup}
+\newcommand{\intersect}{\bigcap}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\ybar}{\bar{y}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\betahat}{\hat{\beta}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\Xhat}{\widehat{X}}
+\newcommand{\xhat}{\hat{x}}
+\newcommand{\E}[1]{\operatorname{E}\left[ #1 \right]}
+%\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}[2]{\operatorname{Cov}\left( #1,#2 \right)}
+\newcommand{\N}[2][1=\mu, 2=\sigma^2]{\operatorname{N}\left( #1,#2 \right)}
+\newcommand{\bp}[1]{\left( #1 \right)}
+\newcommand{\bsb}[1]{\left[ #1 \right]}
+\newcommand{\bcb}[1]{\left\{ #1 \right\}}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
+\newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
+
+%%%%%%%%%%%%%%%%%%% To change the margins and stuff %%%%%%%%%%%%%%%%%%%
+\geometry{left=1in, right=1in, top=1in, bottom=0.8in}
+%\setlength{\voffset}{0.5in}
+%\setlength{\hoffset}{-0.4in}
+%\setlength{\textwidth}{7.6in}
+%\setlength{\textheight}{10in}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{Sweave}
+\begin{document}
+\input{Update_2014-11-30-concordance}
+
+\bibliographystyle{plain}  %Choose a bibliograhpic style
+
+\title{Comparing different clustering techniques in analyzing gene-expression data}
+\author{Subhrangshu Nandi\\
+  Stat 760: Multivariate Analysis\\
+  Project Report \\
+  nandi@stat.wisc.edu}
+\date{November 25, 2014}
+%\date{}
+
+%\maketitle
+
+\begin{center}
+{\Large{Comparing different clustering techniques in analyzing gene-expression data}}\\
+%Subhrangshu Nandi\\
+%Stat 760: Multivariate Analysis\\
+%Project Proposal\\
+November 30, 2014
+\end{center}
+
+\noindent
+The results of using the {\emph{clValid package}} in R, on Data 2 are:
+
+\noindent
+For {\emph{Gaussian Mixture Model clustering}}\\
+\begin{Schunk}
+\begin{Soutput}
+[1] "Mclust recommends:"
+\end{Soutput}
+\begin{Soutput}
+[1] "VVV ( ellipsoidal, varying volume, shape, and orientation ) model with 6 components"
+\end{Soutput}
+\end{Schunk}
+\\
+\noindent
+For {\emph{Hierarchical clustering}}\\
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Sun Nov 30 22:22:32 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 12.9972 & 16.7996 & 22.2563 & 22.7063 & 26.0865 \\ 
+  Dunn & 0.4779 & 0.5717 & 0.6107 & 0.6107 & 0.6107 \\ 
+  Silhouette & 0.1748 & 0.2481 & 0.2405 & 0.2344 & 0.2290 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
+For {\emph{k-means clustering}}\\
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Sun Nov 30 22:22:33 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 22.2528 & 26.5933 & 31.5496 & 32.8952 & 30.3833 \\ 
+  Dunn & 0.5710 & 0.5130 & 0.5269 & 0.5157 & 0.5792 \\ 
+  Silhouette & 0.2562 & 0.2168 & 0.2024 & 0.1800 & 0.2086 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
+For {\emph{PAM clustering}}\\
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Sun Nov 30 22:22:33 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 25.1405 & 26.5337 & 32.0750 & 35.1302 & 36.4980 \\ 
+  Dunn & 0.3658 & 0.3658 & 0.3658 & 0.3712 & 0.3712 \\ 
+  Silhouette & 0.1458 & 0.1577 & 0.1548 & 0.1512 & 0.1601 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
+Final recommendations:
+\begin{table}[H]
+\centering
+\begin{tabular}{lrll}
+\hline
+& Score & Method & Clusters \\
+\hline
+Connectivity & 12.9972 & hierarchical & 4 \\
+Dunn & 0.6107 & hierarchical & 6 \\
+Silhouette & 0.2562 & kmeans & 4 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+\bibliography{Reference_Stat760_ProjectReport}
+%\bibliography{research}
+
+\end{document}

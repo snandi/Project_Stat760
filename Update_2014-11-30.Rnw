@@ -1,0 +1,194 @@
+%\documentclass[11pt]{extarticle} %extarticle for fontsizes other than 10, 11 And 12
+\documentclass[11p]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsxtra}
+\usepackage{bbold}
+%\usepackage{bigints}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+%\usepackage{fancyhdr}
+\usepackage{float}
+%\usepackage{fullpage} %% Dont use this for beamer presentations
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{lscape}
+%\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{xargs}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg, .jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sup}{\textsuperscript}
+\newcommand{\Exp}{\mathds{E}}
+\newcommand{\Prob}{\mathds{P}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\Ind}{\mathds{1}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\union}{\bigcup}
+\newcommand{\intersect}{\bigcap}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\ybar}{\bar{y}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\betahat}{\hat{\beta}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\Xhat}{\widehat{X}}
+\newcommand{\xhat}{\hat{x}}
+\newcommand{\E}[1]{\operatorname{E}\left[ #1 \right]}
+%\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}[2]{\operatorname{Cov}\left( #1,#2 \right)}
+\newcommand{\N}[2][1=\mu, 2=\sigma^2]{\operatorname{N}\left( #1,#2 \right)}
+\newcommand{\bp}[1]{\left( #1 \right)}
+\newcommand{\bsb}[1]{\left[ #1 \right]}
+\newcommand{\bcb}[1]{\left\{ #1 \right\}}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
+\newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
+
+%%%%%%%%%%%%%%%%%%% To change the margins and stuff %%%%%%%%%%%%%%%%%%%
+\geometry{left=1in, right=1in, top=1in, bottom=0.8in}
+%\setlength{\voffset}{0.5in}
+%\setlength{\hoffset}{-0.4in}
+%\setlength{\textwidth}{7.6in}
+%\setlength{\textheight}{10in}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\bibliographystyle{plain}  %Choose a bibliograhpic style
+
+\title{Comparing different clustering techniques in analyzing gene-expression data}
+\author{Subhrangshu Nandi\\
+  Stat 760: Multivariate Analysis\\
+  Project Report \\
+  nandi@stat.wisc.edu}
+\date{November 25, 2014}
+%\date{}
+
+%\maketitle
+
+\begin{center}
+{\Large{Comparing different clustering techniques in analyzing gene-expression data}}\\
+%Subhrangshu Nandi\\
+%Stat 760: Multivariate Analysis\\
+%Project Proposal\\
+November 30, 2014
+\end{center}
+
+\noindent
+The results of using the {\emph{clValid package}} in R, on Data 2 are:
+
+\noindent
+For {\emph{Gaussian Mixture Model clustering}}\\
+<<echo=FALSE>>=
+rm(list=ls(all.names=TRUE))
+rm(list=objects(all.names=TRUE))
+#dev.off()
+
+########################################################################
+## This script uses the clValid package to compare the clustering     ##
+## techniques
+########################################################################
+
+########################################################################
+## Run Header files                                                   ##
+########################################################################
+Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
+source(Filename.Header)
+
+RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
+RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
+source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
+
+########################################################################
+## Data 2                                                             ##
+########################################################################
+Filename.Data2_T <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data2_Leuk_Transposed.txt'
+Data2 <- read.table(file=Filename.Data2_T, header=TRUE, sep='\t', stringsAsFactors=F)
+#Data2.subset <- Data2[,1:10000]
+
+Time1 <- Sys.time()
+GMM2 <- Mclust(data = Data2)
+#summary(GMM2)
+#Sys.time() - Time1
+
+Modelname <- summary(GMM2)[['modelName']]
+NumClusters <- summary(GMM2)[['G']]
+# Mclust VVV (ellipsoidal, varying volume, shape, and orientation) model with 2 components:
+GMM_Output <- paste(Modelname, '(', mclustModelNames('VVV')[['type']], ')', 'model with', 
+                    NumClusters, 'components')  
+print('Mclust recommends:')
+print(GMM_Output)
+@ 
+\\
+\noindent
+For {\emph{Hierarchical clustering}}\\
+<<echo=FALSE, results=tex>>=
+Time1 <- Sys.time()
+Comparison2 <- clValid(obj=t(Data2), nClust=4:8, maxitems=30000,
+                       clMethods=c("hierarchical", "kmeans", "pam"),
+                       validation="internal")
+# summary(Comparison2)
+# Sys.time() - Time1
+
+Measures <- Comparison2@measures
+#str(Measures)
+#round(Measures[,,'hierarchical'], 4)
+xtable(round(Measures[,,'hierarchical'], 4), digits=4)
+@
+\\
+For {\emph{k-means clustering}}\\
+<<echo=FALSE, results=tex>>=
+xtable(round(Measures[,,'kmeans'], 4), digits=4)
+@
+\\
+For {\emph{PAM clustering}}\\
+<<echo=FALSE, results=tex>>=
+xtable(round(Measures[,,'pam'], 4), digits=4)
+@
+\\
+Final recommendations:
+\begin{table}[H]
+\centering
+\begin{tabular}{lrll}
+\hline
+& Score & Method & Clusters \\
+\hline
+Connectivity & 12.9972 & hierarchical & 4 \\
+Dunn & 0.6107 & hierarchical & 6 \\
+Silhouette & 0.2562 & kmeans & 4 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+\bibliography{Reference_Stat760_ProjectReport}
+%\bibliography{research}
+
+\end{document}
