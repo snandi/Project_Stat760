@@ -103,7 +103,6 @@ November 30, 2014
 \noindent
 The results of using the {\emph{clValid package}} in R, on {\bf{Data 1}} are:
 
-\noindent
 For {\emph{Gaussian Mixture Model clustering}}\\
 <<echo=FALSE>>=
 rm(list=ls(all.names=TRUE))
@@ -118,17 +117,17 @@ rm(list=objects(all.names=TRUE))
 ########################################################################
 ## Run Header files                                                   ##
 ########################################################################
-Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
+Filename.Header <- paste('~/RScripts/HeaderFile_lmcg.R', sep='')
 source(Filename.Header)
 
-RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
-RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
+RScriptPath <- '~/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
+RDataPath <- '~/Courses/Stat760_Fall2014/Project/Data/'
 source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
 
 ########################################################################
 ## Data 1                                                             ##
 ########################################################################
-Filename.Data1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
+Filename.Data1 <- '~/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
 Data1 <- read.table(file=Filename.Data1, header=TRUE, sep='\t', quote="", 
                     comment.char="",
                     stringsAsFactors=F)
@@ -136,7 +135,7 @@ Time1 <- Sys.time()
 #GMM1 <- Mclust(data = Data1[,-c(1:2)])
 #summary(GMM1)
 #Sys.time() - Time1
-Filename.GMM1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
+Filename.GMM1 <- '~/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
 load(Filename.GMM1)
 #save(GMM1, file=Filename.GMM1)
 
@@ -148,19 +147,18 @@ print('Mclust recommends:')
 print(GMM_Output)
 @ 
 \\
-\noindent
 For {\emph{Hierarchical clustering}}\\
 
 <<echo=FALSE, results=tex>>=
 Time1 <- Sys.time()
-Comparison1 <- clValid(obj=Data1[,-c(1:2)], nClust=4:8, maxitems=30000,
-                       clMethods=c("hierarchical", "kmeans", "pam"),
-                       validation="internal")
+# Comparison1 <- clValid(obj=Data1[,-c(1:2)], nClust=4:8, maxitems=30000,
+#                        clMethods=c("hierarchical", "kmeans", "pam"),
+#                        validation="internal")
 # summary(Comparison1)
 # Sys.time() - Time1
-Filename.Comp1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
-save(Comparison1, file=Filename.Comp1)
-
+Filename.Comp1 <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
+#save(Comparison1, file=Filename.Comp1)
+load(Filename.Comp1)
 Measures <- Comparison1@measures
 #str(Measures)
 #round(Measures[,,'hierarchical'], 4)

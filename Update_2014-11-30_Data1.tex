@@ -104,7 +104,6 @@ November 30, 2014
 \noindent
 The results of using the {\emph{clValid package}} in R, on {\bf{Data 1}} are:
 
-\noindent
 For {\emph{Gaussian Mixture Model clustering}}\\
 \begin{Schunk}
 \begin{Soutput}
@@ -115,6 +114,69 @@ For {\emph{Gaussian Mixture Model clustering}}\\
 \end{Soutput}
 \end{Schunk}
 \\
-\noindent
 For {\emph{Hierarchical clustering}}\\
 
+% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Mon Dec  1 15:47:19 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 26.7952 & 33.7071 & 33.7071 & 36.6361 & 39.5651 \\ 
+  Dunn & 0.1257 & 0.1257 & 0.1257 & 0.1257 & 0.1257 \\ 
+  Silhouette & 0.9295 & 0.9284 & 0.9282 & 0.9278 & 0.8929 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
+For {\emph{k-means clustering}}\\
+% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Mon Dec  1 15:47:19 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 176.0750 & 288.9159 & 291.9361 & 407.4218 & 410.3508 \\ 
+  Dunn & 0.0342 & 0.0187 & 0.0228 & 0.0122 & 0.0142 \\ 
+  Silhouette & 0.8218 & 0.7320 & 0.7321 & 0.6542 & 0.6542 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
+For {\emph{PAM clustering}}\\
+% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Mon Dec  1 15:47:19 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline
+Connectivity & 731.3607 & 1311.4063 & 1526.6492 & 1547.9964 & 1835.9476 \\ 
+  Dunn & 0.0043 & 0.0020 & 0.0021 & 0.0021 & 0.0026 \\ 
+  Silhouette & 0.3877 & 0.1330 & 0.1452 & 0.1443 & 0.1332 \\ 
+   \hline
+\end{tabular}
+\end{table}\\
+Final recommendations:
+\begin{table}[H]
+\centering
+\begin{tabular}{lrll}
+\hline
+& Score & Method & Clusters \\
+\hline
+Connectivity & 26.7952 & hierarchical & 4 \\
+Dunn & 0.1257 & hierarchical & 5 \\
+Silhouette & 0.9295 & hierarchical & 4 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+\bibliography{Reference_Stat760_ProjectReport}
+%\bibliography{research}
+
+\end{document}
