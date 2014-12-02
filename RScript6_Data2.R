@@ -36,8 +36,10 @@ GMM_Output <- paste('Mclust recommends', Modelname, '(', mclustModelNames('VVV')
                     NumClusters, 'components')  
 print(GMM_Output)
 
-#Filename.GMM2 <- '~/Courses/Stat760_Fall2014/Project/Data/GMM2.RData'
+Filename.GMM2 <- '~/Courses/Stat760_Fall2014/Project/Data/GMM2.RData'
 #save(GMM2, file=Filename.GMM2)
+load(Filename.GMM2)
+summary(GMM2)
 
 Time1 <- Sys.time()
 Comparison2 <- clValid(obj=Data2, nClust=4:8, maxitems=30000,

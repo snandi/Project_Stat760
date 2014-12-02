@@ -32,3 +32,22 @@ Mode <- function(x) {
   }
 ########################################################################
 
+####################### Extract Name of an object ######################
+objectName <- function(object) {
+  Name <-deparse(substitute(object))
+  return(Name)
+} 
+########################################################################
+
+########################################################################
+## Run GMM using mclust and save the cluster object for further analy ##
+## sis.                                                               ##
+########################################################################
+fn_runGMM <- function(Data, Name='ALL', DataPath=RDataPath){
+  GMM <- Mclust(data = Data)
+  Name1 <- paste('GMM', Name, sep='_')
+  assign(x = Name1, value = GMM)
+  Filename.GMM <- paste(DataPath, Name1, '.RData', sep='')
+  save(list = Name1, file=Filename.GMM)
+}
+########################################################################
