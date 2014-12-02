@@ -36,7 +36,6 @@ GMM_Output <- paste('Mclust recommends', Modelname, '(', mclustModelNames('VVV')
                     NumClusters, 'components')  
 print(GMM_Output)
 
-
 #Filename.GMM2 <- '~/Courses/Stat760_Fall2014/Project/Data/GMM2.RData'
 #save(GMM2, file=Filename.GMM2)
 
