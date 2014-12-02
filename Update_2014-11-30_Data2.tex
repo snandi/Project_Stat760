@@ -40,7 +40,7 @@
 \newcommand{\Ind}{\mathds{1}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\F}{\mathcal{F}}
-\newcommand{\G}{\mathcal{G}}
+%\newcommand{\G}{\mathcal{G}}
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\be}{\begin{equation}}
 \newcommand{\ee}{\end{equation}}
@@ -79,7 +79,7 @@
 
 \usepackage{Sweave}
 \begin{document}
-\input{Update_2014-11-30-concordance}
+\input{Update_2014-11-30_Data2-concordance}
 
 \bibliographystyle{plain}  %Choose a bibliograhpic style
 
@@ -118,46 +118,46 @@ For {\emph{Gaussian Mixture Model clustering}}\\
 \noindent
 For {\emph{Hierarchical clustering}}\\
 % latex table generated in R 3.1.2 by xtable 1.7-4 package
-% Sun Nov 30 22:22:32 2014
+% Tue Dec 02 11:04:18 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
   \hline
  & 4 & 5 & 6 & 7 & 8 \\ 
   \hline
-Connectivity & 12.9972 & 16.7996 & 22.2563 & 22.7063 & 26.0865 \\ 
-  Dunn & 0.4779 & 0.5717 & 0.6107 & 0.6107 & 0.6107 \\ 
-  Silhouette & 0.1748 & 0.2481 & 0.2405 & 0.2344 & 0.2290 \\ 
+Connectivity & 1281.7921 & 1281.7921 & 1283.7210 & 1295.6063 & 1299.4643 \\ 
+  Dunn & 0.0418 & 0.0418 & 0.0418 & 0.0418 & 0.0418 \\ 
+  Silhouette & 0.4802 & 0.4770 & 0.4755 & 0.4256 & 0.4187 \\ 
    \hline
 \end{tabular}
 \end{table}\\
 For {\emph{k-means clustering}}\\
 % latex table generated in R 3.1.2 by xtable 1.7-4 package
-% Sun Nov 30 22:22:33 2014
+% Tue Dec 02 11:04:18 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
   \hline
  & 4 & 5 & 6 & 7 & 8 \\ 
   \hline
-Connectivity & 22.2528 & 26.5933 & 31.5496 & 32.8952 & 30.3833 \\ 
-  Dunn & 0.5710 & 0.5130 & 0.5269 & 0.5157 & 0.5792 \\ 
-  Silhouette & 0.2562 & 0.2168 & 0.2024 & 0.1800 & 0.2086 \\ 
+Connectivity & 2091.8222 & 2595.5750 & 3188.2520 & 2861.3841 & 3313.9595 \\ 
+  Dunn & 0.0185 & 0.0199 & 0.0188 & 0.0209 & 0.0228 \\ 
+  Silhouette & 0.4025 & 0.3611 & 0.3204 & 0.3616 & 0.3243 \\ 
    \hline
 \end{tabular}
 \end{table}\\
 For {\emph{PAM clustering}}\\
 % latex table generated in R 3.1.2 by xtable 1.7-4 package
-% Sun Nov 30 22:22:33 2014
+% Tue Dec 02 11:04:18 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
   \hline
  & 4 & 5 & 6 & 7 & 8 \\ 
   \hline
-Connectivity & 25.1405 & 26.5337 & 32.0750 & 35.1302 & 36.4980 \\ 
-  Dunn & 0.3658 & 0.3658 & 0.3658 & 0.3712 & 0.3712 \\ 
-  Silhouette & 0.1458 & 0.1577 & 0.1548 & 0.1512 & 0.1601 \\ 
+Connectivity & 2195.3782 & 2704.9004 & 3516.5151 & 4162.8429 & 4424.4167 \\ 
+  Dunn & 0.0176 & 0.0193 & 0.0179 & 0.0167 & 0.0182 \\ 
+  Silhouette & 0.3653 & 0.3363 & 0.2919 & 0.2335 & 0.2277 \\ 
    \hline
 \end{tabular}
 \end{table}\\
@@ -168,13 +168,12 @@ Final recommendations:
 \hline
 & Score & Method & Clusters \\
 \hline
-Connectivity & 12.9972 & hierarchical & 4 \\
-Dunn & 0.6107 & hierarchical & 6 \\
-Silhouette & 0.2562 & kmeans & 4 \\
+Connectivity & 1281.7921 & hierarchical & 4 \\
+Dunn & 0.0418 & hierarchical & 4 \\
+Silhouette & 0.4802 & hierarchical & 4 \\
 \hline
 \end{tabular}
 \end{table}
-
 
 \newpage
 \bibliography{Reference_Stat760_ProjectReport}

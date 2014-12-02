@@ -40,7 +40,7 @@
 \newcommand{\Ind}{\mathds{1}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\F}{\mathcal{F}}
-\newcommand{\G}{\mathcal{G}}
+%\newcommand{\G}{\mathcal{G}}
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\be}{\begin{equation}}
 \newcommand{\ee}{\end{equation}}
@@ -183,13 +183,12 @@ Final recommendations:
 \hline
 & Score & Method & Clusters \\
 \hline
-Connectivity & 12.9972 & hierarchical & 4 \\
-Dunn & 0.6107 & hierarchical & 6 \\
-Silhouette & 0.2562 & kmeans & 4 \\
+Connectivity & 1281.7921 & hierarchical & 4 \\
+Dunn & 0.0418 & hierarchical & 4 \\
+Silhouette & 0.4802 & hierarchical & 4 \\
 \hline
 \end{tabular}
 \end{table}
-
 
 \newpage
 \bibliography{Reference_Stat760_ProjectReport}
