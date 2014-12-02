@@ -10,17 +10,17 @@ rm(list=objects(all.names=TRUE))
 ########################################################################
 ## Run Header files                                                   ##
 ########################################################################
-Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
+Filename.Header <- paste('~/RScripts/HeaderFile_lmcg.R', sep='')
 source(Filename.Header)
 
-RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
-RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
+RScriptPath <- '~/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
+RDataPath <- '~/Courses/Stat760_Fall2014/Project/Data/'
 source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
 
 ########################################################################
 ## Data 2                                                             ##
 ########################################################################
-Filename.Data2_T <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data2_Leuk_Transposed.txt'
+Filename.Data2_T <- '~/Courses/Stat760_Fall2014/Project/Data/Data2_Leuk_Transposed.txt'
 Data2 <- read.table(file=Filename.Data2_T, header=TRUE, sep='\t', stringsAsFactors=F)
 #Data2.subset <- Data2[,1:10000]
 
@@ -41,7 +41,7 @@ print(GMM_Output)
 #save(GMM2, file=Filename.GMM2)
 
 Time1 <- Sys.time()
-Comparison2 <- clValid(obj=Data2, nClust=4:6, maxitems=30000,
+Comparison2 <- clValid(obj=Data2, nClust=4:8, maxitems=30000,
                        clMethods=c("hierarchical", "kmeans", "pam"),
                        validation="internal")
 summary(Comparison2)
@@ -54,7 +54,7 @@ round(Measures[,,'kmeans'], 4)
 round(Measures[,,'pam'], 4)
 xtable(round(Measures[,,'hierarchical'], 4), digits = 4)
 
-# Filename.Comp2 <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison2.RData'
-# save(Comparison2, file=Filename.Comp2)
+Filename.Comp2 <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison2.RData'
+save(Comparison2, file=Filename.Comp2)
 
 

@@ -133,7 +133,9 @@ Data2 <- read.table(file=Filename.Data2_T, header=TRUE, sep='\t', stringsAsFacto
 #Data2.subset <- Data2[,1:10000]
 
 Time1 <- Sys.time()
-GMM2 <- Mclust(data = Data2)
+# GMM2 <- Mclust(data = Data2)
+Filename.GMM2 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/GMM2.RData'
+load(Filename.GMM2)
 #summary(GMM2)
 #Sys.time() - Time1
 
@@ -150,11 +152,13 @@ print(GMM_Output)
 For {\emph{Hierarchical clustering}}\\
 <<echo=FALSE, results=tex>>=
 Time1 <- Sys.time()
-Comparison2 <- clValid(obj=t(Data2), nClust=4:8, maxitems=30000,
-                       clMethods=c("hierarchical", "kmeans", "pam"),
-                       validation="internal")
+# Comparison2 <- clValid(obj=t(Data2), nClust=4:8, maxitems=30000,
+#                        clMethods=c("hierarchical", "kmeans", "pam"),
+#                        validation="internal")
 # summary(Comparison2)
 # Sys.time() - Time1
+Filename.Comp2 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Comparison2.RData'
+load(Filename.Comp2)
 
 Measures <- Comparison2@measures
 #str(Measures)

@@ -40,7 +40,7 @@
 \newcommand{\Ind}{\mathds{1}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\F}{\mathcal{F}}
-\newcommand{\G}{\mathcal{G}}
+%\newcommand{\G}{\mathcal{G}}
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\be}{\begin{equation}}
 \newcommand{\ee}{\end{equation}}
@@ -117,17 +117,17 @@ rm(list=objects(all.names=TRUE))
 ########################################################################
 ## Run Header files                                                   ##
 ########################################################################
-Filename.Header <- paste('~/RScripts/HeaderFile_lmcg.R', sep='')
+Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
 source(Filename.Header)
 
-RScriptPath <- '~/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
-RDataPath <- '~/Courses/Stat760_Fall2014/Project/Data/'
+RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
+RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
 source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
 
 ########################################################################
 ## Data 1                                                             ##
 ########################################################################
-Filename.Data1 <- '~/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
+Filename.Data1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
 Data1 <- read.table(file=Filename.Data1, header=TRUE, sep='\t', quote="", 
                     comment.char="",
                     stringsAsFactors=F)
@@ -135,7 +135,7 @@ Time1 <- Sys.time()
 #GMM1 <- Mclust(data = Data1[,-c(1:2)])
 #summary(GMM1)
 #Sys.time() - Time1
-Filename.GMM1 <- '~/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
+Filename.GMM1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
 load(Filename.GMM1)
 #save(GMM1, file=Filename.GMM1)
 
@@ -156,7 +156,7 @@ Time1 <- Sys.time()
 #                        validation="internal")
 # summary(Comparison1)
 # Sys.time() - Time1
-Filename.Comp1 <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
+Filename.Comp1 <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
 #save(Comparison1, file=Filename.Comp1)
 load(Filename.Comp1)
 Measures <- Comparison1@measures
@@ -183,7 +183,7 @@ Final recommendations:
 & Score & Method & Clusters \\
 \hline
 Connectivity & 26.7952 & hierarchical & 4 \\
-Dunn & 0.1257 & hierarchical & 5 \\
+Dunn & 0.1257 & hierarchical & 4 \\
 Silhouette & 0.9295 & hierarchical & 4 \\
 \hline
 \end{tabular}
