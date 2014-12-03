@@ -42,3 +42,10 @@ fn_runGMM(CML, Name='CML', DataPath=RDataPath)
 
 fn_runGMM(NoL, Name='NoL', DataPath=RDataPath)
 
+Name <- 'ALL'
+for(Name in c('ALL', 'AML', 'CLL', 'CML', 'NoL')){
+  Name1 <- paste('GMM', Name, sep='_')
+  Filename.GMM <- paste(RDataPath, Name1, '.RData', sep='')
+  load(Filename.GMM)
+  print(summary(get(Name1)))
+}
