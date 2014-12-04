@@ -21,11 +21,11 @@ source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
 ## Data 2                                                             ##
 ########################################################################
 Filename.Data <- '~/Courses/Stat760_Fall2014/Project/Data/Data2_Leuk_Transposed.txt'
-Data <- read.table(file=Filename.Data, header=TRUE, sep='\t', quote="", 
+Data2 <- read.table(file=Filename.Data, header=TRUE, sep='\t', quote="", 
                    comment.char="",
                    stringsAsFactors=F)
 
-Dist <- stats::dist(x = Data, method = 'euclidean')
+Dist <- stats::dist(x = Data2, method = 'euclidean')
 dim(Dist)
 
 # Diss <- cluster::daisy(x = Data, stand = T)
@@ -39,15 +39,14 @@ Filename.PC <- paste(RDataPath, 'flatPclusters2', sep='')
 Cluster.PC <- read.table(file=Filename.PC, header=FALSE, sep='\t', quote="", 
                          comment.char="",
                          stringsAsFactors=F)
-colnames(Cluster.PC) <- c('Gene.Accession.Number', 'PC')
+#colnames(Cluster.PC) <- c('Gene.Accession.Number', 'PC')
 ## Data <- merge(x = Data, y = Cluster.PC, by = 'Gene.Accession.Number')
 ## Cols <- colnames(Data) %w/o% c('Gene.Accession.Number', 
 ##                                'Gene.Description', 'PC')
 
-Connectivity.PC <- clValid::connectivity(clusters = Cluster.PC$V2, 
-                                         Data = Data)
+Connectivity.PC <- clValid::connectivity(clusters = Cluster.PC$V2, Data = Data2)
 Connectivity.PC
-Dunn.PC <- dunn(clusters = Cluster.PC$V2, Data = Data, method = "euclidean")
+Dunn.PC <- dunn(clusters = Cluster.PC$V2, Data = Data2, method = "euclidean")
 Dunn.PC
 SI.PC <- cluster::silhouette(x = Cluster.PC$V2, dmatrix = Dist)
 summary(SI.PC)
@@ -76,7 +75,7 @@ summary(SI.PC)
 ## Dunn.KM <- dunn(clusters = Data$KM, Data = Data[,Cols], method = "euclidean")
 
 ########################################################################
-## Load GMM results for Data 1                                   ##
+## Load GMM results for Data 2                                   ##
 ########################################################################
 Filename.GMM <- '~/Courses/Stat760_Fall2014/Project/Data/GMM2.RData'
 load(Filename.GMM)
@@ -86,21 +85,21 @@ Cluster.GMM <- GMM2$classification
 plot(GMM2, what='BIC')
 
 Connectivity.GMM <- clValid::connectivity(clusters = Cluster.GMM, 
-                                          Data = Data)
+                                          Data = Data2)
 SI.GMM <- silhouette(x = Cluster.GMM, dist = Dist)
 summary(SI.GMM)
 
-Dunn.GMM <- dunn(clusters = Cluster.GMM, Data = Data, method = "euclidean")
+Dunn.GMM <- dunn(clusters = Cluster.GMM, Data = Data2, method = "euclidean")
 
 ########################################################################
-## Load Comparison results for Data 1                                ##
+## Load Comparison results for Data 2                                ##
 ########################################################################
-Filename.Comp <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
+Filename.Comp <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison2.RData'
 load(Filename.Comp)
 
-summary(Comparison1)
+summary(Comparison2)
 
-NewCluster.KM <- clValid(obj=Data, nClust=4, maxitems=30000,
+NewCluster.KM <- clValid(obj=Data2, nClust=4, maxitems=30000,
                        clMethods="kmeans",
                        validation="internal")
 summary(NewCluster.KM)
@@ -113,7 +112,7 @@ Dunn.KM <- (NewCluster.KM@measures)['Dunn',,]
 ########################################################################
 ## Hierarchical Clustering                                            ##
 ########################################################################
-NewCluster.HI <- clValid(obj=Data, nClust=4, maxitems=30000,
+NewCluster.HI <- clValid(obj=Data2, nClust=4, maxitems=30000,
                          clMethods="hierarchical", method='average',
                          validation="internal")
 summary(NewCluster.HI)
@@ -135,4 +134,4 @@ rownames(Table2) <- c('pCluster', 'Gaussian Mixture', 'K-Means', 'Agglomerative 
 
 round(Table2, 4)
 
-save(Table2, file=paste(RDataPath, 'Table1.RData', sep=''))
+save(Table2, file=paste(RDataPath, 'Table2.RData', sep=''))
