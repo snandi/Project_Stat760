@@ -10,21 +10,27 @@ rm(list=objects(all.names=TRUE))
 ########################################################################
 ## Run Header files                                                   ##
 ########################################################################
-Filename.Header <- paste('~/RScripts/HeaderFile_lmcg.R', sep='')
+Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
 source(Filename.Header)
 
-RScriptPath <- '~/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
-RDataPath <- '~/Courses/Stat760_Fall2014/Project/Data/'
+RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
+RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
 source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
 
 ########################################################################
 ## Data 1                                                             ##
 ########################################################################
-Filename.Data <- '~/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
+Filename.Data <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data1_Leuk.txt'
 Data <- read.table(file=Filename.Data, header=TRUE, sep='\t', quote="", 
                    comment.char="",
                    stringsAsFactors=F)
+Cols <- colnames(Data) %w/o% c('Gene.Accession.Number', 
+                               'Gene.Description')
 
+Dist <- stats::dist(x = Data[,Cols], method = 'euclidean')
+dim(Dist)
+
+Diss <- cluster::daisy(x = Data[,Cols], stand = T)
 ########################################################################
 ## Load pcluster results for Data 1                                   ##
 ########################################################################
@@ -40,6 +46,10 @@ Cols <- colnames(Data) %w/o% c('Gene.Accession.Number',
 Connectivity.PC <- clValid::connectivity(clusters = Data$PC, 
                                          Data = Data[,Cols])
 Connectivity.PC
+Dunn.PC <- dunn(clusters = Data$PC, Data = Data[,Cols], method = "euclidean")
+Dunn.PC
+SI.PC <- silhouette(x = Data$PC, dmatrix = Diss)
+summary(SI.PC)
 
 ########################################################################
 ## Load kmeans results for Data 1                                   ##
@@ -57,9 +67,7 @@ Connectivity.KM <- clValid::connectivity(clusters = Data$KM,
                                       Data = Data[,Cols])
 Connectivity.KM
 
-Dist <- stats::dist(x = Data[,Cols], method = 'euclidean')
-
-SI.KM <- silhouette(x = Cluster.KM$KM, dist = Dist)
+SI.KM <- cluster::silhouette(x = Data$KM, dmatrix = Diss)
 summary(SI.KM)
 
 Dunn.KM <- dunn(clusters = Data$KM, Data = Data[,Cols], method = "euclidean")
@@ -67,7 +75,7 @@ Dunn.KM <- dunn(clusters = Data$KM, Data = Data[,Cols], method = "euclidean")
 ########################################################################
 ## Load GMM results for Data 1                                   ##
 ########################################################################
-Filename.GMM <- '~/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
+Filename.GMM <- 'Z:/Courses/Stat760_Fall2014/Project/Data/GMM1.RData'
 load(Filename.GMM)
 
 Cluster.GMM <- GMM1$classification
@@ -81,7 +89,18 @@ Dunn.GMM <- dunn(distance = NULL, clusters, Data = NULL, method = "euclidean")
 ########################################################################
 ## Load Comparison results for Data 1                                ##
 ########################################################################
-Filename.Comp <- '~/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
+Filename.Comp <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Comparison1.RData'
 load(Filename.Comp)
 
 summary(Comparison1)
+str(Comparison1)
+
+Data.KM <- clValid(obj=Data[,Cols], nClust=4, maxitems=30000,
+                       clMethods="kmeans",
+                       validation="internal")
+summary(Data.KM)
+str(Data.KM)
+Cluster.KM <- (((Data.KM@clusterObjs)$kmeans)[[1]])$cluster
+SI.KM <- silhouette(x = Cluster.KM, dist=Dist)
+summary(SI.KM)
+
