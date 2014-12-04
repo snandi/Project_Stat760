@@ -3,6 +3,7 @@ tmp
 backup_linux
 *.pdf
 .Rhistory
+.RData
 *.Rdata
 *.txt
 *.csv
