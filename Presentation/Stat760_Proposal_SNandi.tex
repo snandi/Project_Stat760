@@ -1,0 +1,145 @@
+\documentclass[11pt]{extarticle} %extarticle for fontsizes other than 10, 11 And 12
+%\documentclass[11p]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsxtra}
+\usepackage{bbold}
+%\usepackage{bigints}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+%\usepackage{fancyhdr}
+\usepackage{float}
+%\usepackage{fullpage} %% Dont use this for beamer presentations
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{lscape}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{xargs}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg, .jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sup}{\textsuperscript}
+\newcommand{\Exp}{\mathds{E}}
+\newcommand{\Prob}{\mathds{P}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\Ind}{\mathds{1}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\union}{\bigcup}
+\newcommand{\intersect}{\bigcap}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\ybar}{\bar{y}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\betahat}{\hat{\beta}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\Xhat}{\widehat{X}}
+\newcommand{\xhat}{\hat{x}}
+\newcommand{\E}[1]{\operatorname{E}\left[ #1 \right]}
+%\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}[2]{\operatorname{Cov}\left( #1,#2 \right)}
+\newcommand{\N}[2][1=\mu, 2=\sigma^2]{\operatorname{N}\left( #1,#2 \right)}
+\newcommand{\bp}[1]{\left( #1 \right)}
+\newcommand{\bsb}[1]{\left[ #1 \right]}
+\newcommand{\bcb}[1]{\left\{ #1 \right\}}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
+\newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
+
+%%%%%%%%%%%%%%%%%%% To change the margins and stuff %%%%%%%%%%%%%%%%%%%
+\geometry{left=1in, right=1in, top=1in, bottom=0.8in}
+%\setlength{\voffset}{0.5in}
+%\setlength{\hoffset}{-0.4in}
+%\setlength{\textwidth}{7.6in}
+%\setlength{\textheight}{10in}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+\bibliographystyle{plain}  %Choose a bibliograhpic style
+
+\title{Comparing different clustering techniques in analyzing gene-expression data}
+\author{Subhrangshu Nandi\\
+  Stat 760: Multivariate Analysis\\
+  Project Report \\
+  nandi@stat.wisc.edu}
+\date{November 25, 2014}
+%\date{}
+
+%\maketitle
+
+\begin{center}
+{\Large{Comparing different clustering techniques in analyzing gene-expression data}}\\
+Subhrangshu Nandi\\
+Stat 760: Multivariate Analysis\\
+Project Proposal\\
+November 25, 2014
+\end{center}
+
+\subsection*{Introduction}
+Before analyzing any data, it is important to identify the presence of any natural groupings or structure. {\emph{Clustering}} is one such technique that provides further insight into the data. Clustering is the most common form of {\emph{unsupervised learning}} \citep{Manning_etal_2008_Information}. Clustering is essentially one of the preliminary tools that are model-free methods of classification and pattern recognition \citep{Hastie_etal_2009_Elements}. Cluster analysis is also used to form descriptive statistics to ascertain whether or not the data consists of a set of distinct subgroups, each group representing objects with substantially different properties.
+
+\subsection*{Comparing clustering techniques in analyzing gene-expression data}
+Many clustering algorithms have been used to analyze microarray gene expression data. Central to goals of analyzing clusters is the degree of similarity (or dissimilarity) between individual objects being clustered. to The goal of this project is to compare and contrast the following clustering techniques, on the data described below.
+\begin{enumerate}
+\item Flat clustering: K-Means, PAM, Gaussian mixture model
+\item Deterministic and model based hierarchical clustering
+\end{enumerate}
+
+\subsection*{Data Description}
+The data set contains gene expresion data from 60 bone marrow samples of patients with one of the four main types of leukemia (ALL, AML, CLL, CML) or no-leukemia. It was collected on the platform Affymetrix Human Genome U133 Plus 2.0. It has 20,172 genes, thus necessitating some pre-processing of the data, before anlyzing it. The data was collected from Bone Marrow Tissue, cell type: Mononuclear cells isolated by Ficoll density centrifugation. The types of Leukemia are enumerated as follows:
+\begin{enumerate}
+\item Acute Lymphoblastic Leukemia (ALL). Subtype: c-ALL / pre-B-ALL without t(9;22)
+\item Acute Myeloid Leukemia (AML). Subtype: Normal karyotype
+\item Chronic Lymphocytic Leukemia (CLL)
+\item Chronic Myeloid Leukemia (CML)
+\item Non-leukemia and healthy bone marrow (NoL)
+\end{enumerate}
+All samples were obtained from untreated patients at the time of diagnosis. This is a subset of the samples collected by the Microarray Innovations in Leukemia (MILE) study (\cite{Kohlmann_etal_2008_BJH} Haferlach et al. 2010). Full study microarray raw data can be found at the NCBI Gene Expression Omnibus database (GEO, http://www.ncbi.nlm.nih.gov/geo/) under series accession number GSE13159. The selected samples are labelled keeping their source GEO IDs.
+
+\subsection*{Comparison metrics}
+As described above the genes will be clustered for each of the 4 types of leukemia and the no-leukemia subset. The following measures will be used to compare and contrasts the clusters:
+\begin{enumerate}
+\item {\emph{Homogeneity and separation}}: Introduced in \cite{Shamir_etal_2004_DAM}, \cite{Shamir_Sharan_2001_CTCB}, {\emph{Homogeneity}} is a measure of similarity of elements inside a cluster. {\emph{Separation}} is a measure of how different elements one clusters are, from elements of other clusters. \\ 
+$H_{ave} = \frac{1}{N_{gene}}\sum _iD(g_i, C(g_i))$, where $g_i$ is the $i^{th}$ gene and $C(g_i)$ is the center of the cluster that $g_i$ belongs to; $N_{gene}$ is the total number of genes; $D$ is the distance function. Separation is calculated as the weighted average distance between cluster centers: \\
+$\frac{1}{\sum _{i \ne j} N_{c_i}N_{c_j}} \sum _{i \ne j}N_{c_i}N_{c_j} D(C_i, C_j)$, where $C_i$ and $C_j$ are the centers of $i^{th}$ and $j^{th}$ clusters, and $N_{c_i}$ and $N_{c_j}$ are the number of genes in the $i^{th}$ and $j^{th}$ clusters. Thus $H_{ave}$ reflects the compactness of the clusters while $S_{ave}$ reflects the overall distance between clusters. Decreasing $H_{ave}$ or increasing $S_{ave}$ suggests an improvement in the clustering results.
+
+\item {\emph{Silhouette width}}: Proposed by Rousseeuw (1987), silhouette width is a composite index reflecting the compactness and separation of the clusters, and can be applied to different distance metrics. For each gene $i$, its silhouette width $s(i)$ is defined as: \\
+$s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i) \}}$, where $a(i)$ is the average distance of gene $i$ to other genes in the same cluster, $b(i)$ is the average distance of gene $i$ to genes in its nearest neighbor cluster. The average of $s(i)$ across all genes reflects the overall quality of the clustering result. A larger averaged silhouette width indicates a better  overall quality of the clustering result.
+
+\item {\emph{Weighted Average Discrepant Pairs (WADP)}}: Robustness of clustering results is important. That is, if input data points deviate slightly from their current values, will we get the same clustering? This is important in microarray expression data analysis because there is always experimental noise in the data. A good clustering result should be insensitive
+to the noise and able to capture the real structure in the data, reflecting of the biological processes under investigation. To test the robustness of the results obtained from different algorithms, we will use the method proposed by \cite{Bittner_etal_2000_Nature}. Briefly, each gene expression profile was perturbed by adding a random vector of the same dimension. Each element of the random vector will be generated from a Gaussian distribution with mean zero, standard deviation 0.01. After re-normalization of the perturbed data, clustering will be performed. For each individual cluster, a cluster-specific discrepancy rate will be calculated as $\frac{D}{M}$. That is, for the $M$ pairs of genes in an original cluster, count the number of gene pairs, $D$, that do not remain together in the clustering of the perturbed data, and take their ratio. The overall discrepancy rate for the clustering is calculated as the weighted average of those cluster-specific discrepancy rates. This process will be repeated many times and the average overall discrepancy rate, the weighted average discrepant pairs
+(WADP) will be obtained. WADP equals zero when two clustering results match perfectly. In the worst case, WADP is close to one.
+\end{enumerate}
+
+\subsection*{Conclusion}
+Finding biological implications of the clustered genes will be interesting, but it is beyond the scope of this class project. The focus of the project will be grasping the mathematical and computational aspects of different clustering techniques and their comparison. 
+
+\newpage
+\bibliography{Reference_Stat760_ProjectReport}
+%\bibliography{research}
+
+\end{document}
