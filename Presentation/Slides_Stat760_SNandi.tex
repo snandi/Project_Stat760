@@ -1,0 +1,174 @@
+%\documentclass[10pt,dvipsnames,table, handout]{beamer} % To printout the slides without the animations
+\documentclass[10pt,dvipsnames,table]{beamer} 
+%\usetheme{Luebeck} 
+\usetheme{Madrid} 
+%\usetheme{Marburg} 
+\setbeamercolor{structure}{fg=cyan!90!white}
+\setbeamercolor{normal text}{fg=white, bg=black}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsxtra}
+\usepackage{bbold}
+%\usepackage{bigints}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumerate}
+\usepackage[mathscr]{eucal}
+%\usepackage{fancyhdr}
+\usepackage{float}
+%\usepackage{fullpage} %% Dont use this for beamer presentations
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{lscape}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{xargs}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg, .jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sup}{\textsuperscript}
+\newcommand{\Exp}{\mathds{E}}
+\newcommand{\Prob}{\mathds{P}}
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\Ind}{\mathds{1}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\union}{\bigcup}
+\newcommand{\intersect}{\bigcap}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\ybar}{\bar{y}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\betahat}{\hat{\beta}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\Xhat}{\widehat{X}}
+\newcommand{\xhat}{\hat{x}}
+\newcommand{\E}[1]{\operatorname{E}\left[ #1 \right]}
+%\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}[2]{\operatorname{Cov}\left( #1,#2 \right)}
+\newcommand{\N}[2][1=\mu, 2=\sigma^2]{\operatorname{N}\left( #1,#2 \right)}
+\newcommand{\bp}[1]{\left( #1 \right)}
+\newcommand{\bsb}[1]{\left[ #1 \right]}
+\newcommand{\bcb}[1]{\left\{ #1 \right\}}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
+\newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\title[Two-sample tests in functional data analysis]{TWO-SAMPLE TESTS IN FUNCTIONAL DATA ANALYSIS STARTING FROM DISCRETE DATA \\ Peter Hall and Ingrid Van Keilegom}
+\author{Subhrangshu Nandi}
+\institute[Stat 809]{Stat 809, Fall 2014 \\
+  Department of Statistics \\
+ University of Wisconsin-Madison}
+\date{November 24, 2014}
+
+\begin{document}
+\setlength{\baselineskip}{16truept}
+\frame{\maketitle}
+
+%%%%%%%%%%%% Slide 1 %%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Outline}
+%\begin{itemize}
+%\pause \item Introduction to functional data
+%\pause \item Motivation of potential problem
+%\pause \item Objective: Minimize effets of smoothing in two sample tests
+%\pause \item Problem definition and two sample test
+%\pause \item Some theoretical results
+%\pause \item Computational results
+%\pause \item Summary
+%\end{itemize}
+%\end{frame}
+
+%%%%%%%%%%%% Slide 2 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is functional data?}
+Functional data describe (nearly) a process that changes smoothly, and continuously, temporally or spatially or both.\\
+What are the features of functional data? 
+\pause
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[scale=0.32]{Plot1.jpeg}
+\end{column}
+\begin{column}{5cm}
+\begin{itemize}
+%\item \pause Quantity
+\item \pause Frequency
+\begin{itemize}
+\item \textcolor{green}{equally spaced intervals}
+\item \textcolor{red}{irregular intervals}
+\end{itemize}
+\item \pause Similar trends
+\item \pause (Most importantly) {\bf{Smoothness}}
+\end{itemize}
+%\vspace{2cm}
+\end{column}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% \begin{frame}
+% \begin{theorem}
+% (i) Let $m=1,\ldots,s_1.$ We consider two runs $C_i,C_j,i\neq j$ in the subdesign $C^{m}.$ Then for $k=1,\ldots,d$ and $x,y\in \textbf{Z}_{s_1^2}$ 
+% $$
+% Pr(C_{ik}=x, C_{jk}=y) =\begin{cases}
+% \frac{1}{s_1^3(s_1-1)},& \ceil{\frac{x}{s_1}}\neq\ceil{\frac{y}{s_1}}\\
+% 0,&o.w.
+% \end{cases}
+% $$
+% (ii) The joint probability mass function for $c_{m_1,ik},c_{m_2,jk},m_1\neq m_2$ is 
+% $$
+% Pr(c_{m_1,ik}=x,c_{m_2,jk}=y) =\begin{cases}
+% \frac{1}{s_1^4},& \ceil{\frac{x}{s_1}}\neq\ceil{\frac{y}{s_1}}\\
+% \frac{1}{s_1^3(s_1-1)},&\ceil{\frac{x}{s_1}}=\ceil{\frac{y}{s_1}},x\neq y\\
+% 0,&o.w.
+% \end{cases}
+% $$
+% \end{theorem}
+% \end{frame}
+
+% \begin{frame}
+% \begin{theorem}
+% Consider two row $C_i,C_j,i\neq j$ in the slice $C^{(m)}.$ Then for $k,l=1,\ldots,d$ and $k\neq l$
+% $$ Pr(c_{ik},c_{il},c_{jk},c_{jl}) =\begin{cases}
+% \frac{1}{s_1^2s_2(s_2-1)(s_1-1)},& (i,j)\in H_1\\
+% \frac{1}{s_1^2s_2^2(s_1-1)},&(i,j)\in H_2.
+% \end{cases}
+% $$
+% \end{theorem}
+% \begin{theorem}
+% \begin{itemize}
+% \item $Var(\hat{\mu}_m) = s_1^{-1}\sum_{|u|\geq3}Var\{f_{m,u}(X)\} + o(s_1^{-1})$
+% \item $Var(\hat{\mu}) = s_1^{-2}\sum_{|u|\geq3}Var\{f_u(X)\} + o(s_1^{-2})$
+% \end{itemize}
+% \end{theorem}
+% \end{frame}
+% %%%%%%%%%%%%%
+
+
+\end{document}
+
