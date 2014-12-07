@@ -32,6 +32,7 @@
 \usepackage{microtype}
 \usepackage{natbib}
 \usepackage{pdfpages}
+\usepackage{tikz} %% For explanatory bubbles
 \usepackage{verbatim}
 \usepackage{wrapfig}
 \usepackage{xargs}
@@ -74,14 +75,40 @@
 \newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
 \newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
 
+
+\usetikzlibrary{shapes.callouts,ocgx}
+
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture,baseline=0.5ex] \node (#1) {};}
+
+% \explainword: #1= identifier to mark the word, #2 text
+\NewDocumentCommand{\explainword}{r[] m}{
+    \switchocg{#1}{#2}\tikzmark{#1}
+}
+
+\tikzset{my callout style/.style={
+        draw,rectangle callout,anchor=pointer,callout relative pointer={(230:1cm)},
+        rounded corners,align=center,text width=2cm,fill=cyan!20, 
+    }
+}
+
+% \mycallout: #1 opacity style, #2 pointer base position, #3= text
+\NewDocumentCommand{\mycallout}{O{opacity=0.8,text opacity=1} m m}{%
+\begin{tikzpicture}[remember picture, overlay]
+ \begin{scope}[ocg={ref=#2,status=invisible,name={#3}}]
+\node[my callout style,#1]at (#2) {#3};
+\end{scope}
+\end{tikzpicture}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\title[Two-sample tests in functional data analysis]{TWO-SAMPLE TESTS IN FUNCTIONAL DATA ANALYSIS STARTING FROM DISCRETE DATA \\ Peter Hall and Ingrid Van Keilegom}
+\title[Clustering gene-expression data]{Comparing different clustering techniques in analyzing gene-expression data}
 \author{Subhrangshu Nandi}
-\institute[Stat 809]{Stat 809, Fall 2014 \\
+\institute[Stat 760]{Stat 809, Fall 2014 \\
   Department of Statistics \\
  University of Wisconsin-Madison}
-\date{November 24, 2014}
+\date{December 11, 2014}
 
 \begin{document}
 \setlength{\baselineskip}{16truept}
@@ -103,28 +130,23 @@
 
 %%%%%%%%%%%% Slide 2 %%%%%%%%%%%%
 \begin{frame}
-\frametitle{What is functional data?}
-Functional data describe (nearly) a process that changes smoothly, and continuously, temporally or spatially or both.\\
-What are the features of functional data? 
-\pause
-\begin{columns}
-\begin{column}{5cm}
-\includegraphics[scale=0.32]{Plot1.jpeg}
-\end{column}
-\begin{column}{5cm}
+\frametitle{Objective}
+\begin{enumerate}
+\pause \item Learn different clustering techniques
 \begin{itemize}
-%\item \pause Quantity
-\item \pause Frequency
-\begin{itemize}
-\item \textcolor{green}{equally spaced intervals}
-\item \textcolor{red}{irregular intervals}
+\item K-means
+\item K-mediods (or Partitioning around \explainword[mediods]{mediods} - PAM)
+\item Hierarchical
+\item Gaussian mixture modeling
+\item 
 \end{itemize}
-\item \pause Similar trends
-\item \pause (Most importantly) {\bf{Smoothness}}
-\end{itemize}
-%\vspace{2cm}
-\end{column}
-\end{columns}
+\item Learn different metrics to compare clusters
+\item Apply to gene-expression data
+\end{enumerate}
+
+\mycallout{mediods}{Example: 2 is integer, but $\pi$ not}
+\tikzset{my callout style/.append style={fill=orange!20}}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
