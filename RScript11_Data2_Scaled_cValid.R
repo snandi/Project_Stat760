@@ -3,7 +3,8 @@ rm(list=objects(all.names=TRUE))
 #dev.off()
 
 ########################################################################
-## This script uses Data2 and clusters them by Leukemia type          ##
+## This script uses Data2, scales the columns to have unit variance   ##
+## and clusters them by Leukemia type                                 ##
 ########################################################################
 
 ########################################################################
@@ -30,6 +31,12 @@ CLL <- Data2[,25:36]
 CML <- Data2[,36:48]
 NoL <- Data2[,49:60]
 
+ALL.Sc <- scale(x=ALL, center=TRUE, scale=TRUE)
+AML.Sc <- scale(x=AML, center=TRUE, scale=TRUE)
+CLL.Sc <- scale(x=CLL, center=TRUE, scale=TRUE)
+CML.Sc <- scale(x=CML, center=TRUE, scale=TRUE)
+NoL.Sc <- scale(x=NoL, center=TRUE, scale=TRUE)
+
 ########################################################################
 ## clValid Comparison                                                 ##
 ########################################################################
@@ -44,21 +51,21 @@ Cluster_Type <- c(rep(x = 'hierarchical', times = length(NumClusters)),
 ########################################################################
 ## ALL                                                                ##
 ########################################################################
-CompALL <- fn_runclValid(Data = ALL, Name='ALL', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
+CompALL <- fn_runclValid(Data = ALL.Sc, Name='ALL_Scaled', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompALL)
 IndexComparison_ALL <- fn_returnIndexData(CompData = CompALL, NumClusters = NumClusters, 
                                           Cluster_Type = Cluster_Type)
 Plot_ALL <- fn_plotComparisons(Data = IndexComparison_ALL, Cluster_Type = Cluster_Type)
 Plot_ALL
-dev.copy(device = jpeg, paste(RPlotPath, 'Plot_ALL.jpeg', sep=''))
+dev.copy(device = jpeg, paste(RPlotPath, 'Plot_ALL_Scaled.jpeg', sep=''))
 dev.off()
 
 ########################################################################
 ## AML                                                                ##
 ########################################################################
 Time1 <- Sys.time()
-CompAML <- fn_runclValid(Data = AML, Name='AML', DataPath=RDataPath, Validation = "internal", 
+CompAML <- fn_runclValid(Data = AML.Sc, Name='AML_Scaled', DataPath=RDataPath, Validation = "internal", 
                          NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompAML)
@@ -66,48 +73,48 @@ IndexComparison_AML <- fn_returnIndexData(CompData = CompAML, NumClusters = NumC
                                           Cluster_Type = Cluster_Type)
 Plot_AML <- fn_plotComparisons(Data = IndexComparison_AML, Cluster_Type = Cluster_Type)
 Plot_AML
-dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML.jpeg', sep=''))
+dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML_Scaled.jpeg', sep=''))
 dev.off()
 
 ########################################################################
 ## CLL                                                                ##
 ########################################################################
 Time1 <- Sys.time()
-CompCLL <- fn_runclValid(CLL, Name='CLL', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
+CompCLL <- fn_runclValid(CLL.Sc, Name='CLL_Scaled', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompCLL)
 IndexComparison_CLL <- fn_returnIndexData(CompData = CompCLL, NumClusters = NumClusters, 
                                           Cluster_Type = Cluster_Type)
 Plot_CLL <- fn_plotComparisons(Data = IndexComparison_CLL, Cluster_Type = Cluster_Type)
 Plot_CLL
-dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML.jpeg', sep=''))
+dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML_Scaled.jpeg', sep=''))
 dev.off()
 
 ########################################################################
 ## CML                                                                ##
 ########################################################################
 Time1 <- Sys.time()
-CompCML <- fn_runclValid(CML, Name='CML', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
+CompCML <- fn_runclValid(CML.Sc, Name='CML_Scaled', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompCML)
 IndexComparison_CML <- fn_returnIndexData(CompData = CompCML, NumClusters = NumClusters, 
                                           Cluster_Type = Cluster_Type)
 Plot_CML <- fn_plotComparisons(Data = IndexComparison_CML, Cluster_Type = Cluster_Type)
 Plot_CML
-dev.copy(device = jpeg, paste(RPlotPath, 'Plot_CML.jpeg', sep=''))
+dev.copy(device = jpeg, paste(RPlotPath, 'Plot_CML_Scaled.jpeg', sep=''))
 dev.off()
 
 ########################################################################
 ## NoL                                                                ##
 ########################################################################
 Time1 <- Sys.time()
-CompNoL <- fn_runclValid(NoL, Name='NoL', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
+CompNoL <- fn_runclValid(NoL.Sc, Name='NoL_Scaled', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompNoL)
 IndexComparison_NoL <- fn_returnIndexData(CompData = CompNoL, NumClusters = NumClusters, 
                                           Cluster_Type = Cluster_Type)
 Plot_NoL <- fn_plotComparisons(Data = IndexComparison_NoL, Cluster_Type = Cluster_Type)
 Plot_NoL
-dev.copy(device = jpeg, paste(RPlotPath, 'Plot_NoL.jpeg', sep=''))
+dev.copy(device = jpeg, paste(RPlotPath, 'Plot_NoL_Scaled.jpeg', sep=''))
 dev.off()
 

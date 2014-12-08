@@ -96,7 +96,7 @@ fn_returnIndexData <- function(CompData=CompALL, NumClusters, Cluster_Type){
   
   Data <- reshape2::melt(data = Measures, id.vars = 'Cluster_Num')
   
-  Data$Cluster_Type <- as.factor(rep(Cluster_Type, length(NumClusters)))
+  Data$Cluster_Type <- as.factor(rep(Cluster_Type, 3))
   
   Data <- plyr::rename(Data, c("variable"="Index", "value"="Index_Value"))
   return(Data)
