@@ -130,7 +130,7 @@
 %\end{itemize}
 %\end{frame}
 
-%%%%%%%%%%%% Slide 2 %%%%%%%%%%%%
+%%%%%%%%%%%% Slide 1 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Objective}
 \begin{enumerate}
@@ -139,8 +139,9 @@
 \item K-means
 %\item K-mediods (or Partitioning around \explainword[mediods]{mediods} - PAM)
 \item K-mediods (or Partitioning around mediods - PAM)
-\item Hierarchical
-\item Gaussian mixture modeling
+\item Agglomerative Hierarchical
+\item Self-organizing tree algorithm (SOTA) 
+\item Gaussian mixture 
 \end{itemize}
 \pause \item Learn different metrics to compare clusters
 \begin{itemize}
@@ -153,6 +154,114 @@
 
 %% \mycallout{mediods}{Always members of the dataset}
 %% \tikzset{my callout style/.append style={fill=orange!20}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 2 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Clustering Techniques}
+\begin{enumerate}
+\pause \item K-means
+\pause \item PAM $|$ Partitioning around mediods $|$ K-mediods
+\begin{itemize}
+\item Mediod: Minimal average dissimilarity to all objects in the cluster
+\item Medoids are always members of the data set
+\item More appropriate in the gene-expression context
+\end{itemize}
+\pause \item Agglomerative Hierarchical
+\begin{itemize}
+\item Yields a dendrogram (Exam 3!!)
+\item Can be cut at a chosen height to produced desired number of clusters
+\end{itemize}
+\pause \item SOTA $|$ Self Organizing Tree Algorithm
+\begin{itemize}
+\item Divisive (top-down) hierarchical binary tree approach
+\item Popular with analyzing gene-expression data
+\item Dopazo and Carazo (1997)
+\end{itemize}
+\pause \item Gaussian mixture
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 3 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Metrics for Comparing Clusters}
+\begin{itemize}
+\pause \item Connectivity
+\begin{itemize}
+\item Measures if close neighbors are in the same cluster
+\item If $\mathcal{C} = \{C_1, \dots, C_K \}$ of $N$ observations, then $Con(\mathcal{C}) = \sum\limits_{i=1}^{N} \sum\limits_{j=1}^{L} d_{i, n_j}$
+\item $Con(\mathcal{C}) \in (0, \infty)$, should be \textcolor{green}{maximized} 
+\end{itemize}
+\pause \item Dunn index
+\begin{itemize}
+\item Ratio of the smallest {\emph{between cluster}} distance to the largest {\emph{within cluster}} distance
+\item $Dunn(\mathcal{C}) \in (0, \infty)$, should be \textcolor{green}{maximized} 
+\end{itemize}
+\pause \item Silhouette width
+\begin{itemize}
+\item Degree of confidence in the clustering assignment of a particular observation
+\item For observation $i$, $S(i) = \frac{b_i - a_i}{\max(b_i,a_i)}$, where, $a_i = \frac{1}{|C(i)|}\sum\limits_{j \in C(i)}d(i,j)$, $b_i = \min \limits_{C_k \in \mathcal{C} \backslash C(i) }\sum\limits_{j \in C_k}\frac{d(i,j)}{|C_k|}$
+\item $S_{avg} \in [-1, 1]$. Well clustered observations have values closet to \textcolor{green}{1}, poorly clustered close to \textcolor{red}{-1}
+\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 4 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Dataset}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 5 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Computation Time Comparison}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 6 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{ALL}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 7 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{AML}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 8 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{CLL}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 9 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{CML}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 10 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{NoL}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 10 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Comparison between different types of Leukemia}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
