@@ -9,18 +9,18 @@ rm(list=objects(all.names=TRUE))
 ########################################################################
 ## Run Header files                                                   ##
 ########################################################################
-Filename.Header <- paste('Z:/RScripts/HeaderFile_lmcg.R', sep='')
+Filename.Header <- paste('~/RScripts/HeaderFile_lmcg.R', sep='')
 source(Filename.Header)
 
-RScriptPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
-RDataPath <- 'Z:/Courses/Stat760_Fall2014/Project/Data/'
-RPlotPath <- 'Z:/Courses/Stat760_Fall2014/Project/RScripts_Stat760/Presentation/'
+RScriptPath <- '~/Courses/Stat760_Fall2014/Project/RScripts_Stat760/'
+RDataPath <- '~/Courses/Stat760_Fall2014/Project/Data/'
+RPlotPath <- '~/Courses/Stat760_Fall2014/Project/RScripts_Stat760/Presentation/'
 source(paste(RScriptPath, 'fn_Library_Project760.R', sep=''))
 
 ########################################################################
 ## Load Data 2                                                        ##
 ########################################################################
-Filename.Data2_T <- 'Z:/Courses/Stat760_Fall2014/Project/Data/Data2_Leuk_Transposed.txt'
+Filename.Data2_T <- '~/Courses/Stat760_Fall2014/Project/Data/Data2_Leuk_Transposed.txt'
 Data2 <- read.table(file=Filename.Data2_T, header=TRUE, sep='\t', stringsAsFactors=F)
 #Data2.subset <- Data2[,1:10000]
 
@@ -34,15 +34,17 @@ NoL <- Data2[,49:60]
 ## clValid Comparison                                                 ##
 ########################################################################
 Time1 <- Sys.time()
-NumClusters=c(6:8)
+NumClusters=c(6:10)
 clMethods=c("hierarchical", "kmeans", "pam", "sota")
 Cluster_Type <- c(rep(x = 'hierarchical', times = length(NumClusters)),
                   rep(x = 'kmeans', times = length(NumClusters)), 
                   rep(x = 'pam', times = length(NumClusters)), 
                   rep(x = 'sota', times = length(NumClusters)))
 
-CompALL <- fn_runclValid(Data = ALL[1:1000,], Name='ALL', DataPath=RDataPath, Validation = "internal", 
-                         NumClusters=NumClusters, clMethods=clMethods)
+########################################################################
+## ALL                                                                ##
+########################################################################
+CompALL <- fn_runclValid(Data = ALL, Name='ALL', DataPath=RDataPath, Validation = "internal", NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompALL)
 IndexComparison_ALL <- fn_returnIndexData(CompData = CompALL, NumClusters = NumClusters, 
@@ -52,8 +54,11 @@ Plot_ALL
 dev.copy(device = jpeg, paste(RPlotPath, 'Plot_ALL.jpeg', sep=''))
 dev.off()
 
+########################################################################
+## AML                                                                ##
+########################################################################
 Time1 <- Sys.time()
-CompAML <- fn_runclValid(Data = AML[1:1000,], Name='AML', DataPath=RDataPath, Validation = "internal", 
+CompAML <- fn_runclValid(Data = AML, Name='AML', DataPath=RDataPath, Validation = "internal", 
                          NumClusters=NumClusters, clMethods=clMethods)
 print(Sys.time() - Time1)
 summary(CompAML)
@@ -64,6 +69,9 @@ Plot_AML
 dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML.jpeg', sep=''))
 dev.off()
 
+########################################################################
+## CLL                                                                ##
+########################################################################
 CompCLL <- fn_runclValid(CLL, Name='CLL', DataPath=RDataPath)
 summary(CompCLL)
 IndexComparison_CLL <- fn_returnIndexData(CompData = CompCLL, NumClusters = NumClusters, 
@@ -73,6 +81,9 @@ Plot_CLL
 dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML.jpeg', sep=''))
 dev.off()
 
+########################################################################
+## CML                                                                ##
+########################################################################
 CompCML <- fn_runclValid(CML, Name='CML', DataPath=RDataPath)
 summary(CompCML)
 IndexComparison_CML <- fn_returnIndexData(CompData = CompCML, NumClusters = NumClusters, 
@@ -82,6 +93,9 @@ Plot_CML
 dev.copy(device = jpeg, paste(RPlotPath, 'Plot_CML.jpeg', sep=''))
 dev.off()
 
+########################################################################
+## NoL                                                                ##
+########################################################################
 CompNoL <- fn_runclValid(NoL, Name='NoL', DataPath=RDataPath)
 summary(CompNoL)
 IndexComparison_NoL <- fn_returnIndexData(CompData = CompNoL, NumClusters = NumClusters, 
