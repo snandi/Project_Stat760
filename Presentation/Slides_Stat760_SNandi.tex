@@ -76,38 +76,38 @@
 
 
 %%%%%%%%%%%%% For explanatory bubbles, use the following code %%%%%%%%%%%%%
-\usepackage{tikz} %% For explanatory bubbles
-\usepackage{xparse}
-\usetikzlibrary{shapes.callouts,ocgx}
+%% \usepackage{tikz} %% For explanatory bubbles
+%% \usepackage{xparse}
+%% \usetikzlibrary{shapes.callouts,ocgx}
 
-\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture,baseline=0.5ex] \node (#1) {};}
+%% \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture,baseline=0.5ex] \node (#1) {};}
 
-% \explainword: #1= identifier to mark the word, #2 text
-\NewDocumentCommand{\explainword}{r[] m}{
-    \switchocg{#1}{#2}\tikzmark{#1}
-}
+%% % \explainword: #1= identifier to mark the word, #2 text
+%% \NewDocumentCommand{\explainword}{r[] m}{
+%%     \switchocg{#1}{#2}\tikzmark{#1}
+%% }
 
-\tikzset{my callout style/.style={
-        draw,rectangle callout,anchor=pointer,callout relative pointer={(230:1cm)},
-        rounded corners,align=center,text width=2cm,fill=cyan!20, 
-    }
-}
+%% \tikzset{my callout style/.style={
+%%         draw,rectangle callout,anchor=pointer,callout relative pointer={(230:1cm)},
+%%         rounded corners,align=center,text width=2cm,fill=cyan!20, 
+%%     }
+%% }
 
-% \mycallout: #1 opacity style, #2 pointer base position, #3= text
-\NewDocumentCommand{\mycallout}{O{opacity=0.8,text opacity=1} m m}{%
-\begin{tikzpicture}[remember picture, overlay]
- \begin{scope}[ocg={ref=#2,status=invisible,name={#3}}]
-\node[my callout style,#1]at (#2) {#3};
-\end{scope}
-\end{tikzpicture}
-}
+%% % \mycallout: #1 opacity style, #2 pointer base position, #3= text
+%% \NewDocumentCommand{\mycallout}{O{opacity=0.8,text opacity=1} m m}{%
+%% \begin{tikzpicture}[remember picture, overlay]
+%%  \begin{scope}[ocg={ref=#2,status=invisible,name={#3}}]
+%% \node[my callout style,#1]at (#2) {#3};
+%% \end{scope}
+%% \end{tikzpicture}
+%% }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \title[Clustering gene-expression data]{Comparing different clustering techniques in analyzing gene-expression data}
 \author{Subhrangshu Nandi}
-\institute[Stat 760]{Stat 809, Fall 2014 \\
+\institute[Stat 760]{Stat 760, Fall 2014 \\
   Department of Statistics \\
  University of Wisconsin-Madison}
 \date{December 11, 2014}
@@ -137,17 +137,22 @@
 \pause \item Learn different clustering techniques
 \begin{itemize}
 \item K-means
-\item K-mediods (or Partitioning around \explainword[mediods]{mediods} - PAM)
+%\item K-mediods (or Partitioning around \explainword[mediods]{mediods} - PAM)
+\item K-mediods (or Partitioning around mediods - PAM)
 \item Hierarchical
 \item Gaussian mixture modeling
-\item 
 \end{itemize}
-\item Learn different metrics to compare clusters
-\item Apply to gene-expression data
+\pause \item Learn different metrics to compare clusters
+\begin{itemize}
+\item Connectivity index
+\item Dunn index
+\item Silhouette width
+\end{itemize}
+\pause \item Apply to gene-expression data and evaluate different clusters using these indices
 \end{enumerate}
 
-\mycallout{mediods}{Always members of the dataset}
-\tikzset{my callout style/.append style={fill=orange!20}}
+%% \mycallout{mediods}{Always members of the dataset}
+%% \tikzset{my callout style/.append style={fill=orange!20}}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
