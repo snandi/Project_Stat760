@@ -193,7 +193,7 @@
 \begin{itemize}
 \item Measures if close neighbors are in the same cluster
 \item If $\mathcal{C} = \{C_1, \dots, C_K \}$ of $N$ observations, then $Con(\mathcal{C}) = \sum\limits_{i=1}^{N} \sum\limits_{j=1}^{L} d_{i, n_j}$
-\item $Con(\mathcal{C}) \in (0, \infty)$, should be \textcolor{green}{maximized} 
+\item $Con(\mathcal{C}) \in (0, \infty)$, should be \textcolor{green}{minimized} 
 \end{itemize}
 \pause \item Dunn index
 \begin{itemize}
@@ -206,6 +206,7 @@
 \item For observation $i$, $S(i) = \frac{b_i - a_i}{\max(b_i,a_i)}$, where, $a_i = \frac{1}{|C(i)|}\sum\limits_{j \in C(i)}d(i,j)$, $b_i = \min \limits_{C_k \in \mathcal{C} \backslash C(i) }\sum\limits_{j \in C_k}\frac{d(i,j)}{|C_k|}$
 \item $S_{avg} \in [-1, 1]$. Well clustered observations have values closet to \textcolor{green}{1}, poorly clustered close to \textcolor{red}{-1}
 \end{itemize}
+\pause \item BIC (for model based clustering)
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -213,14 +214,28 @@
 %%%%%%%%%%%% Slide 4 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Dataset}
-
+\begin{itemize}
+\pause \item Gene expresion data\footnotemark from 60 bone marrow samples of patients with the following types of Leukemia (12 in each group)
+\begin{enumerate}
+\item Acute Lymphoblastic Leukemia (ALL)
+\item Acute Myeloid Leukemia (AML)
+\item Chronic Lymphocytic Leukemia (CLL)
+\item Chronic Myeloid Leukemia (CML)
+\item \textcolor{green}{Non-leukemia and (healthy bone marrow) (NoL)}
+\end{enumerate}
+\pause \item All samples were obtained from untreated patients at the time of diagnosis
+\pause \item Microarray gene expression data - \textcolor{red}{20,172 genes} \\
+\hspace{0.5cm} - Each subset has design matrix 12 rows X 20,172 columns
+\pause \item GOAL: Use different clustering techniques and check if the 5 groups cluster differently.
+\end{itemize}
+\footnotetext[1]{Bioinformatics and Functional Genomics Group, Cancer Research Center, Salamanca. Spain}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%% Slide 5 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Computation Time Comparison}
-
+\includegraphics[scale=0.4]{TimePlot_NoL.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
