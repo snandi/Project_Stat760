@@ -103,11 +103,11 @@ fn_returnIndexData <- function(CompData=CompALL, NumClusters, Cluster_Type){
 }
 
 
-fn_plotComparisons <- function(Data, Cluster_Type){
+fn_plotComparisons <- function(Data, Cluster_Type, Title=''){
   Plot <- qplot(x=Cluster_Num, y=Index_Value, data=Data, color=Cluster_Type) + 
     geom_line(size=1) + geom_point(size=4) + 
     facet_wrap(~Index, ncol=1, scales="free") +
-    xlab(label = 'Cluster Size') + ylab('') + ggtitle('ALL: Acute Lymphoblastic Leukemia') +
+    xlab(label = 'Cluster Size') + ylab('') + ggtitle(Title) +
     theme(panel.background = element_rect(fill = 'black'), 
           plot.background = element_rect(color='black', fill = "gray10"), 
           plot.title=element_text(face="bold", size=15, colour="white"),

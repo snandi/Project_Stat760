@@ -41,7 +41,7 @@ NoL.Sc <- scale(x=NoL, center=TRUE, scale=TRUE)
 ## clValid Comparison                                                 ##
 ########################################################################
 Time1 <- Sys.time()
-NumClusters <- c(6:9)
+NumClusters <- c(6:10)
 clMethods=c("hierarchical", "kmeans", "pam", "sota")
 Cluster_Type <- c(rep(x = 'hierarchical', times = length(NumClusters)),
                   rep(x = 'kmeans', times = length(NumClusters)), 
@@ -87,7 +87,7 @@ IndexComparison_CLL <- fn_returnIndexData(CompData = CompCLL, NumClusters = NumC
                                           Cluster_Type = Cluster_Type)
 Plot_CLL <- fn_plotComparisons(Data = IndexComparison_CLL, Cluster_Type = Cluster_Type)
 Plot_CLL
-dev.copy(device = jpeg, paste(RPlotPath, 'Plot_AML_Scaled.jpeg', sep=''))
+dev.copy(device = jpeg, paste(RPlotPath, 'Plot_CLL_Scaled.jpeg', sep=''))
 dev.off()
 
 ########################################################################
