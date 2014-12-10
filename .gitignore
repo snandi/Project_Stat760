@@ -9,3 +9,5 @@ backup_linux
 *.csv
 .Rproj.user
 .Rproj.user/*
+*.Rout
+*.out
