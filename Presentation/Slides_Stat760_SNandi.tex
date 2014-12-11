@@ -35,6 +35,7 @@
 \usepackage{verbatim}
 \usepackage{wrapfig}
 \usepackage{xargs}
+\usepackage{xcolor}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg, .jpeg}
 
 %%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%
@@ -215,7 +216,7 @@
 \begin{frame}
 \frametitle{Dataset}
 \begin{itemize}
-\pause \item Gene expresion data\footnotemark from 60 bone marrow samples of patients with the following types of Leukemia (12 in each group)
+\item Gene expresion data\footnotemark from 60 bone marrow samples of patients with the following types of Leukemia (12 in each group)
 \begin{enumerate}
 \item Acute Lymphoblastic Leukemia (ALL)
 \item Acute Myeloid Leukemia (AML)
@@ -239,49 +240,212 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%% Slide 10 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{NoL}
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[scale=0.35]{Plot_NoL.jpeg} \\
+%\pause \includegraphics[scale=0.25]{Plot_NoL_Scaled.jpeg}
+\end{column}
+\begin{column}{5cm}
+\pause \includegraphics[scale=0.28]{BICPlot_NoL.pdf} \\
+\end{column}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Slide 10a %%%%%%%%%%%%
+\begin{frame}
+\frametitle{NoL (continued)}
+\begin{table}[H]
+\centering
+\begin{tabular}{l|r|r}
+\hline
+Metric & Type of Cluster & Cluster Size \\ 
+\hline
+Connectivity & hierarchical & 6 \\
+Dunn & hierarchical & 6 \\
+Silhouette & hierarchical & 8 \\
+\hline
+\end{tabular}
+\caption{Recommendations for NoL}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|r|r}
+\hline
+Metric & Type of Cluster & Cluster Size \\ 
+\hline
+Connectivity & hierarchical & 6 \\
+Dunn & SOTA & 9 \\
+Silhouette & hierarchical & 6 \\
+\hline
+\end{tabular}
+\caption{Recommendations for NoL (Scaled)}
+\end{table}
+
+\begin{block}{GMM}
+9 clusters, ``ellipsoidal, varying volume, shape, and orientation''
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%% Slide 6 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{ALL}
-
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[scale=0.35]{Plot_ALL.jpeg} \\
+%\pause \includegraphics[scale=0.25]{Plot_NoL_Scaled.jpeg}
+\end{column}
+\begin{column}{5cm}
+\pause \includegraphics[scale=0.28]{BICPlot_ALL.pdf} \\
+\end{column}
+\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%% Slide 7 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{AML}
-
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[scale=0.35]{Plot_AML.jpeg} \\
+%\pause \includegraphics[scale=0.25]{Plot_NoL_Scaled.jpeg}
+\end{column}
+\begin{column}{5cm}
+\pause \includegraphics[scale=0.28]{BICPlot_AML.pdf} \\
+\end{column}
+\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%% Slide 8 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{CLL}
-
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[scale=0.35]{Plot_CLL.jpeg} \\
+%\pause \includegraphics[scale=0.25]{Plot_NoL_Scaled.jpeg}
+\end{column}
+\begin{column}{5cm}
+\pause \includegraphics[scale=0.28]{BICPlot_CLL.pdf} \\
+\end{column}
+\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%% Slide 9 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{CML}
-
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[scale=0.35]{Plot_CML.jpeg} \\
+%\pause \includegraphics[scale=0.25]{Plot_NoL_Scaled.jpeg}
+\end{column}
+\begin{column}{5cm}
+\pause \includegraphics[scale=0.28]{BICPlot_CML.pdf} \\
+\end{column}
+\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%% Slide 10 %%%%%%%%%%%%
-\begin{frame}
-\frametitle{NoL}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%% Slide 10 %%%%%%%%%%%%
+%%%%%%%%%%%% Slide 11 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Comparison between different types of Leukemia}
-
+\begin{columns}
+\begin{column}{.5\textwidth}
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Wed Dec 10 18:00:07 2014
+\begin{table}[ht]
+\centering
+{\footnotesize
+\rowcolors{1}{}{gray}
+\begin{tabular}{rlll}
+\hline
+\multicolumn{4}{c}{Original Data} \\
+  \hline
+ Score & Cluster & Index & Subset \\ 
+  \hline
+  1078.35 & hier, 6 & Conn & ALL \\ 
+  0.02 & hier, 6 & Dunn & ALL \\ 
+  0.50 & hier, 6 & Silhouette & ALL \\ 
+  1363.35 & hier, 6 & Conn & AML \\ 
+  0.03 & hier, 6 & Dunn & AML \\ 
+  0.49 & hier, 6 & Silhouette & AML \\ 
+  904.49 & hier, 6 & Conn & CLL \\ 
+  0.02 & hier, 6 & Dunn & CLL \\ 
+  0.54 & hier, 6 & Silhouette & CLL \\ 
+  1145.28 & hier, 6 & Conn & CML \\ 
+  0.03 & hier, 6 & Dunn & CML \\ 
+  0.47 & hier, 6 & Silhouette & CML \\ 
+  555.36 & hier, 6 & Conn & NoL \\ 
+  0.03 & hier, 6 & Dunn & NoL \\ 
+  0.48 & hier, 8 & Silhouette & NoL \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}
+\begin{column}{.5\textwidth}
+% latex table generated in R 3.1.2 by xtable 1.7-4 package
+% Wed Dec 10 18:00:31 2014
+\begin{table}[ht]
+\centering
+{\footnotesize
+\rowcolors{2}{}{gray}
+\begin{tabular}{rll}
+\hline
+\multicolumn{3}{c}{Centered and Scaled} \\
+\hline
+Score & Clusters & Index \\ 
+  \hline
+157.43 & hier, 6 & Conn \\ 
+  0.03 & hier, 6 & Dunn \\ 
+  0.47 & hier, 9 & Silhouette \\ 
+  927.66 & hier, 6 & Conn \\ 
+  0.04 & hier, 8 & Dunn \\ 
+  0.41 & hier, 6 & Silhouette \\ 
+  853.40 & hier, 6 & Conn \\ 
+  0.02 & hier, 6 & Dunn \\ 
+  0.53 & hier, 6 & Silhouette \\ 
+  966.44 & hier, 6 & Conn \\ 
+  0.03 & hier, 7 & Dunn \\ 
+  0.49 & hier, 6 & Silhouette \\ 
+  938.19 & hier, 6 & Conn \\ 
+  0.02 & sota, 9 & Dunn \\ 
+  0.49 & hier, 6 & Silhouette \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}
+\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%% Slide 11 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Comparison between different types of Leukemia (GMM)}
+\includegraphics[scale=0.45]{BICPlot_Comparison.pdf} \\
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%% Slide 11 %%%%%%%%%%%%
+\begin{frame}
+\frametitle{Comparison between different types of Leukemia}
+\begin{columns}
+\begin{column}{.5\textwidth}
+\includegraphics[scale=0.35]{ComparisonPlot.pdf} \\
+\end{column}
+\begin{column}{.5\textwidth}
+\includegraphics[scale=0.35]{ComparisonPlot_Sc.pdf} \\
+\end{column}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % \begin{frame}
