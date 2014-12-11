@@ -204,10 +204,12 @@
 \pause \item Silhouette width
 \begin{itemize}
 \item Degree of confidence in the clustering assignment of a particular observation
-\item For observation $i$, $S(i) = \frac{b_i - a_i}{\max(b_i,a_i)}$, where, $a_i = \frac{1}{|C(i)|}\sum\limits_{j \in C(i)}d(i,j)$, $b_i = \min \limits_{C_k \in \mathcal{C} \backslash C(i) }\sum\limits_{j \in C_k}\frac{d(i,j)}{|C_k|}$
+\item For observation $i$, $S(i) = \frac{b_i - a_i}{\max(b_i,a_i)}$, where, \\
+$a_i = \frac{1}{|C(i)|}\sum\limits_{j \in C(i)}d(i,j)$, {\footnotesize (avg dist from objects in same cluster)} \\
+$b_i = \min \limits_{C_k \in \mathcal{C} \backslash C(i) }\sum\limits_{j \in C_k}\frac{d(i,j)}{|C_k|}$, {\footnotesize(avg dist from objects in neighboring clusters)} \\
 \item $S_{avg} \in [-1, 1]$. Well clustered observations have values closet to \textcolor{green}{1}, poorly clustered close to \textcolor{red}{-1}
 \end{itemize}
-\pause \item BIC (for model based clustering)
+\pause \item BIC (for model based clustering) (Raftery, 1999; Fraley and Raftery, 2002)
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -227,8 +229,11 @@
 \pause \item All samples were obtained from untreated patients at the time of diagnosis
 \pause \item Microarray gene expression data - \textcolor{red}{20,172 genes} \\
 \hspace{0.5cm} - Each subset has design matrix 12 rows X 20,172 columns
-\pause \item GOAL: Use different clustering techniques and check if the 5 groups cluster differently.
 \end{itemize}
+\pause 
+\begin{block}{GOAL} 
+Use different clustering techniques and check if the 5 groups cluster differently.
+\end{block}
 \footnotetext[1]{Bioinformatics and Functional Genomics Group, Cancer Research Center, Salamanca. Spain}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,7 +241,9 @@
 %%%%%%%%%%%% Slide 5 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Computation Time Comparison}
+\begin{center}
 \includegraphics[scale=0.4]{TimePlot_NoL.pdf}
+\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -392,6 +399,7 @@ Silhouette & hierarchical & 6 \\
 \begin{column}{.5\textwidth}
 % latex table generated in R 3.1.2 by xtable 1.7-4 package
 % Wed Dec 10 18:00:31 2014
+\pause
 \begin{table}[ht]
 \centering
 {\footnotesize
