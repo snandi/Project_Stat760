@@ -43,8 +43,8 @@ objectName <- function(object) {
 ## Run GMM using mclust and save the cluster object for further analy ##
 ## sis.                                                               ##
 ########################################################################
-fn_runGMM <- function(Data, Name='ALL', DataPath=RDataPath){
-  GMM <- Mclust(data = Data)
+fn_runGMM <- function(Data, Name='ALL', DataPath=RDataPath, numClusters=1:9){
+  GMM <- Mclust(data = Data, G=numClusters)
   Name1 <- paste('GMM', Name, sep='_')
   assign(x = Name1, value = GMM)
   Filename.GMM <- paste(DataPath, Name1, '.RData', sep='')
