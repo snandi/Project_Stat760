@@ -429,7 +429,9 @@ Score & Clusters & Index \\
 %%%%%%%%%%%% Slide 11 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Comparison between different types of Leukemia (GMM)}
+\begin{center}
 \includegraphics[scale=0.45]{BICPlot_Comparison.pdf} \\
+\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -450,6 +452,7 @@ Score & Clusters & Index \\
 %%%%%%%%%%%% Slide 12 %%%%%%%%%%%%
 \begin{frame}
 \frametitle{Clustering patients by gene expression}
+{\footnotesize
 We know there are 5 groups of patients
 \begin{table}[H]
 \centering
@@ -464,7 +467,12 @@ Silhouette & hierarchical & 4 \\
 \end{tabular}
 \caption{Recommendations for number of patient clusters}
 \end{table}
-
+\pause 
+GMM recommends 5 clusters, by BIC criterion, with the cluster sizes: 13, 12, 15, 10, 10
+}
+\begin{center}
+\includegraphics[scale=0.25]{BICPlot_Patient.pdf} \\
+\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
